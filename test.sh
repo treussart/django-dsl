@@ -13,7 +13,7 @@ if [[ "$VIRTUAL_ENV" = "" ]]; then
     fi
 fi
 
-FAIL_UNDER="87"
+FAIL_UNDER="100"
 flake8 .
 result_flake8="$?"
 if [ "$result_flake8" -ne 0 ]; then
