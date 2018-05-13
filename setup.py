@@ -21,7 +21,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
     long_description = f.read()
 
 setup(
-    name='django-dsl',
+    name='django-domain-specific-language',
     version=get_version(),
     description='DSL for Django',
     long_description=long_description,

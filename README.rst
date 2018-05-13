@@ -20,7 +20,7 @@ Installation
 
 ::
 
-   pip install django-dsl
+   pip install django-domain-specific-language
 
 Usage
 -----
