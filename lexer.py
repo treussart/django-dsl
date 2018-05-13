@@ -15,7 +15,7 @@ tokens = (
 # Regular expression rules for simple tokens
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
-t_FIELD = r'[A-Za-z0-9\_\.]+:[A-Za-z0-9\_\~\*\.\^\$\?\{\}\[\]\|\!\\\/éèàû]+'
+t_FIELD = r'[A-Za-z0-9\_\.]+:[A-Za-z0-9\_\~\*\.\^\$\?\{\}\[\]\|\!\\\/\+\-éèàû]+'
 t_AND = r'and'
 t_OR = r'or'
 t_NOT = r'not'

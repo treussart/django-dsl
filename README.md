@@ -10,7 +10,7 @@ Allows you to search by specifying the name of the column of the database.
 
 Characters allowed:
 - Key (column name) : A-Za-z0-9\_\.
-- Value : A-Za-z0-9\_\~\*\.\^\$\?\{\}\[\]\|\!\\\/éèàû
+- Value : A-Za-z0-9\_\~\*\.\^\$\?\{\}\[\]\|\!\\\/\+\-éèàû
 
 Query Parser Syntax:
 - Wildcard Searches: *
