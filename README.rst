@@ -45,6 +45,17 @@ Query Parser Syntax:
   * ~\W+ : Matches any character which is not a word character.
 * Boolean Operators: AND OR NOT
 * Grouping: ( )
+* Date and number Searches (operators: < > <= >=) :
+
+  * key>2
+  * key<=2
+* Date Range Searches (inclusive) (which correspond to SQL queries of BETWEEN):
+
+  * key:2018-05-04_2018-05-05
+* Null Searches (which correspond to SQL queries of IS NULL and IS NOT NULL):
+
+  * key:True
+  * key:False
 
 Example
 -------
