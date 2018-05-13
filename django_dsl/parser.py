@@ -1,10 +1,12 @@
-import ply.yacc as yacc
+from ply.yacc import yacc
 from django.db.models import Q
 from exceptions import CompileException
 from lexer import tokens
 
 
 assert tokens
+
+yacc.yaccdebug = False
 
 
 def p_expression_and(p):
@@ -58,4 +60,4 @@ precedence = (
 
 
 def build_parser():
-    return yacc.yacc()
+    return yacc()

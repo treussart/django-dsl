@@ -7,3 +7,4 @@ exclude =
     venv/,
     htmlcov/,
     dist/,
+    django_dsl/parsetab.py,
