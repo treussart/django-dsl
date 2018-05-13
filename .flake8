@@ -4,6 +4,6 @@ exclude =
     .git,
     __pycache__,
     docs/,
-    .venv/,
+    venv/,
     htmlcov/,
     dist/,

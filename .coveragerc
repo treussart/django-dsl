@@ -1,0 +1,7 @@
+[report]
+omit =  */tests/*
+        venv/*
+        dist/*
+        setup.py
+[html]
+title = "django-dsl Coverage report"
