@@ -1,5 +1,5 @@
 import ply.lex as lex
-from dsl.exceptions import CompileException
+from .exceptions import CompileException
 
 
 # List of token names.   This is always required
