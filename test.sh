@@ -39,4 +39,9 @@ if [ "$result_report" -ne 0 ]; then
     echo "Tests failed : Coverage under $FAIL_UNDER %"
     exit "$result_report"
 fi
+# Upload to pypi
+if [[ "$TRAVIS" = true ]]; then
+    python setup.py bdist_wheel
+    twine upload -u "$PYPI_USERNAME" -p "$PYPI_PASSWORD" dist/*
+fi
 exit

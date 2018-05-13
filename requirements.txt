@@ -2,3 +2,4 @@ coverage==4.5.1
 Django==2.0.5
 flake8==3.5.0
 ply==3.10
+twine==1.11.0

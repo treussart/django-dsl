@@ -10,5 +10,7 @@ python:
 - '3.6'
 os:
 - linux
+before_script:
+- "pip install wheel"
 script:
 - "./test.sh"
