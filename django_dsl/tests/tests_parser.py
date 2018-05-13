@@ -58,6 +58,22 @@ class TestParser(TestCase):
         result = compile("key>=1 and key1:value1")
         self.assertEqual(str(result), "(AND: ('key__gte', 1), ('key1__iexact', 'value1'))")
 
+    def test_9_1(self):
+        result = compile("key>2018-05-04")
+        self.assertEqual(str(result), "(AND: ('key__gt', datetime.date(2018, 5, 4)))")
+
+    def test_10_1(self):
+        result = compile("key<2018-05-04 and key1:value1")
+        self.assertEqual(str(result), "(AND: ('key__lt', datetime.date(2018, 5, 4)), ('key1__iexact', 'value1'))")
+
+    def test_11_1(self):
+        result = compile("key<=2018-05-04 and key1:value1")
+        self.assertEqual(str(result), "(AND: ('key__lte', datetime.date(2018, 5, 4)), ('key1__iexact', 'value1'))")
+
+    def test_12_1(self):
+        result = compile("key>=2018-05-04 and key1:value1")
+        self.assertEqual(str(result), "(AND: ('key__gte', datetime.date(2018, 5, 4)), ('key1__iexact', 'value1'))")
+
     def test_fail_1(self):
         with self.assertRaises(CompileException):
             compile("(key:value and key1:value1)) or not key2:value2 ")
@@ -75,7 +91,7 @@ class TestParser(TestCase):
             compile("key1:value1 or")
 
     def test_fail_5(self):
-        with self.assertRaises(ValueError):
+        with self.assertRaises(CompileException):
             compile("key<test and key1:value1")
 
 

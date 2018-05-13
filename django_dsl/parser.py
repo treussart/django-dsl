@@ -1,7 +1,9 @@
 from ply.yacc import yacc
+from datetime import date
 from django.db.models import Q
 from exceptions import CompileException
 from lexer import tokens
+from re import match
 
 
 assert tokens
@@ -49,25 +51,40 @@ def p_expression_field(p):
     elif '>=' in field:
         key, value = field.split('>=')
         key = key.strip().replace('.', '__')
-        p[0] = Q(**{key + '__gte': int(value)})
+        value = test_value(value.strip())
+        p[0] = Q(**{key + '__gte': value})
     elif '<=' in field:
         key, value = field.split('<=')
         key = key.strip().replace('.', '__')
-        p[0] = Q(**{key + '__lte': int(value)})
+        value = test_value(value.strip())
+        p[0] = Q(**{key + '__lte': value})
     elif '>' in field:
         key, value = field.split('>')
         key = key.strip().replace('.', '__')
-        p[0] = Q(**{key + '__gt': int(value)})
+        value = test_value(value.strip())
+        p[0] = Q(**{key + '__gt': value})
     elif '<' in field:
         key, value = field.split('<')
         key = key.strip().replace('.', '__')
-        p[0] = Q(**{key + '__lt': int(value)})
+        value = test_value(value.strip())
+        p[0] = Q(**{key + '__lt': value})
+
+
+def test_value(value):
+    if match(r'^\d+$', value):
+        return int(value)
+    else:
+        t = match(r'(?P<year>\d{4})-(?P<month>\d{1,2})-(?P<day>\d{1,2})', value)
+        if t:
+            return date(int(t.group('year')), int(t.group('month')), int(t.group('day')))
+        else:
+            raise CompileException("Parsing error: value not an integer or a date")
 
 
 def p_error(p):
     if p:
-        raise CompileException(u"Parsing error around token: %s" % p.value)
-    raise CompileException(u"Parsing error: unexpected end of expression")
+        raise CompileException("Parsing error around token: %s" % p.value)
+    raise CompileException("Parsing error: unexpected end of expression")
 
 
 precedence = (
