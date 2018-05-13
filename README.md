@@ -30,7 +30,7 @@ Your database:
 
 The possible researches:
 - Country:India AND Product:Ice-cream
-- Country:\*a* AND Product:~.*e$
+- Country:\*a* AND NOT Product:~.*e$
 
 
 In your code:
