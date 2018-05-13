@@ -24,7 +24,8 @@ Query Parser Syntax:
 
 ## Example
 
-Your database: 
+Your database:
+
 ![DB image](https://raw.githubusercontent.com/treussart/django-dsl/master/example-db.png)
 
 The possible researches:
