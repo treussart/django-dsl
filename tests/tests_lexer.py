@@ -1,6 +1,6 @@
 from django.test import TestCase
-from dsl.lexer import build_lexer
-from dsl.exceptions import CompileException
+from lexer import build_lexer
+from exceptions import CompileException
 
 
 class TestLexer(TestCase):
