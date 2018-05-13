@@ -3,5 +3,6 @@ omit =  */tests/*
         venv/*
         dist/*
         setup.py
+        */virtualenv/*
 [html]
 title = "django-dsl Coverage report"
