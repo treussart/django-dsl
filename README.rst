@@ -14,15 +14,19 @@ Allows you to search by specifying the name of the column of the
 database.
 
 Characters allowed:
+
 * Key (column name) : `A-Za-z0-9_.`
 * Value : A-Za-z0-9_~*.^$?{}[]|!\/+-éèàû
 
 Query Parser Syntax:
+
 * Wildcard Searches: *
+
   * *\test : All that ends by test
   * test\* : All that starts by test
   * \*test\* : All that contains test
 * `Regex`_ Searches: ~
+
   * ~\W+ : Matches any character which is not a word character.
 * Boolean Operators: AND OR NOT
 * Grouping: ( )
@@ -38,6 +42,7 @@ Your database:
    DB image
 
 The possible researches:
+
 * Country:India AND Product:Ice-cream
 * Country:\*a\* AND NOT Product:~.*e$
 
