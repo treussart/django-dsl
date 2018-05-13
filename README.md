@@ -22,7 +22,7 @@ Query Parser Syntax:
 - Boolean Operators: AND OR NOT
 - Grouping: ( )
 
-Example:
+## Example
 
 Your database: 
 ![DB image](https://raw.githubusercontent.com/treussart/django-dsl/master/example-db.png)
