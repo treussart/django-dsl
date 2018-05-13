@@ -44,4 +44,4 @@ if [[ "$TRAVIS" = true ]]; then
     python setup.py bdist_wheel
     twine upload -u "$PYPI_USERNAME" -p "$PYPI_PASSWORD" dist/*
 fi
-exit
+exit 0
