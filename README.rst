@@ -1,11 +1,24 @@
 django-dsl
 ==========
 
++------------------+--------------------+
+| Status           | Operating system   |
++==================+====================+
+| |Build_Status|   | Linux x86\_64      |
++------------------+--------------------+
+
 Requirements
 ------------
 
 -  PLY
 -  Django
+
+Installation
+------------
+
+::
+
+   pip install django-dsl
 
 Usage
 -----
@@ -54,3 +67,6 @@ In your code:
    result = compile(request.GET['expression'])
 
 .. _Regex: https://docs.python.org/3/library/re.html
+
+.. |Build_Status| image:: https://travis-ci.org/treussart/django-dsl.svg?branch=master
+   :target: https://travis-ci.org/treussart/django-dsl
