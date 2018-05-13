@@ -1,5 +1,5 @@
-from dsl.lexer import build_lexer
-from dsl.parser import build_parser
+from .lexer import build_lexer
+from .parser import build_parser
 
 
 def compile(expr):
