@@ -39,7 +39,7 @@ Query Parser Syntax:
 
   * *\test : All that ends by test
   * test\* : All that starts by test
-  * \*test\* : All that contains test
+  * *\test\* : All that contains test
 * `Regex`_ Searches: ~
 
   * ~\W+ : Matches any character which is not a word character.
