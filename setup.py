@@ -10,9 +10,7 @@ here = path.abspath(path.dirname(__file__))
 
 def get_version():
     label = subprocess.check_output(["git", "describe", "--tags"], universal_newlines=True, encoding="UTF_8").strip()
-    print(label)
     version = re.search(r'[0-9]\.[0-9]\.[0-9]', label)
-    print(version)
     if not version:
         return '0.0.0'
     return version.group(0)
