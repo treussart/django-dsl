@@ -9,7 +9,7 @@ here = path.abspath(path.dirname(__file__))
 
 
 def get_version():
-    label = subprocess.check_output(["git", "describe", "--tags"], universal_newlines=True, encoding="UTF_8").strip()
+    label = subprocess.check_output(["git", "describe", "--tags"], universal_newlines=True).strip()
     version = re.search(r'[0-9]\.[0-9]\.[0-9]', label)
     if not version:
         return '0.0.0'
@@ -103,4 +103,8 @@ setup(
     #         'transilien = Transilien_Domoticz.transilien:transilien',
     #     ],
     # },
+    install_requires=[
+       'Django>=2',
+       'ply'
+    ]
 )
