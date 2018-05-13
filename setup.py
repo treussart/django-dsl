@@ -4,8 +4,18 @@ from os import path
 import re
 import subprocess
 
-label = subprocess.check_output(["git", "describe", "--tags"]).strip()
+
 here = path.abspath(path.dirname(__file__))
+
+
+def get_version():
+    label = subprocess.check_output(["git", "describe", "--tags"], universal_newlines=True, encoding="UTF_8").strip()
+    print(label)
+    version = re.search(r'[0-9]\.[0-9]\.[0-9]', label)
+    print(version)
+    if not version:
+        return '0.0.0'
+    return version.group(0)
 
 
 # Get the long description from the README file
@@ -14,7 +24,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='django-dsl',
-    version=label,
+    version=get_version(),
     description='DSL for Django',
     long_description=long_description,
     url='https://github.com/treussart/django-dsl',
