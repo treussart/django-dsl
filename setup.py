@@ -12,7 +12,7 @@ def get_version():
     try:
         label = subprocess.check_output(["git", "describe", "--tags"], universal_newlines=True).strip()
     except subprocess.CalledProcessError:
-     return '0.0.0'
+        return '0.0.0'
     version = re.search(r'[0-9]\.[0-9]\.[0-9]', label)
     if not version:
         return '0.0.0'
