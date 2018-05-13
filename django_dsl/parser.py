@@ -32,19 +32,36 @@ def p_expression_paren(p):
 def p_expression_field(p):
     'expression : FIELD'
     field = str(p[1])
-    key, value = field.split(':')
-    key = key.strip().replace('.', '__')
-    value = value.strip()
-    if value.startswith('~'):
-        p[0] = Q(**{key + '__iregex': value[1:]})
-    elif value.startswith('*') and not value.endswith('*'):
-        p[0] = Q(**{key + '__iendswith': value[1:]})
-    elif value.endswith('*') and not value.startswith('*'):
-        p[0] = Q(**{key + '__istartswith': value[:-1]})
-    elif value.endswith('*') and value.startswith('*'):
-        p[0] = Q(**{key + '__icontains': value[1:-1]})
-    else:
-        p[0] = Q(**{key: value})
+    if ':' in field:
+        key, value = field.split(':')
+        key = key.strip().replace('.', '__')
+        value = value.strip()
+        if value.startswith('~'):
+            p[0] = Q(**{key + '__iregex': value[1:]})
+        elif value.startswith('*') and not value.endswith('*'):
+            p[0] = Q(**{key + '__iendswith': value[1:]})
+        elif value.endswith('*') and not value.startswith('*'):
+            p[0] = Q(**{key + '__istartswith': value[:-1]})
+        elif value.endswith('*') and value.startswith('*'):
+            p[0] = Q(**{key + '__icontains': value[1:-1]})
+        else:
+            p[0] = Q(**{key + '__iexact': value})
+    elif '>=' in field:
+        key, value = field.split('>=')
+        key = key.strip().replace('.', '__')
+        p[0] = Q(**{key + '__gte': int(value)})
+    elif '<=' in field:
+        key, value = field.split('<=')
+        key = key.strip().replace('.', '__')
+        p[0] = Q(**{key + '__lte': int(value)})
+    elif '>' in field:
+        key, value = field.split('>')
+        key = key.strip().replace('.', '__')
+        p[0] = Q(**{key + '__gt': int(value)})
+    elif '<' in field:
+        key, value = field.split('<')
+        key = key.strip().replace('.', '__')
+        p[0] = Q(**{key + '__lt': int(value)})
 
 
 def p_error(p):

@@ -17,6 +17,33 @@ class TestLexer(TestCase):
         self.assertEqual(tok.lexpos, 0)
         self.assertEqual(tok.lineno, 1)
 
+    def test_1_1(self):
+        lexer.input("key:2")
+        tok = lexer.token()
+        # print(tok.type, tok.value, tok.lexpos)
+        self.assertEqual(tok.type, "FIELD")
+        self.assertEqual(tok.value, "key:2")
+        self.assertEqual(tok.lexpos, 0)
+        self.assertEqual(tok.lineno, 1)
+
+    def test_1_2(self):
+        lexer.input("key<2")
+        tok = lexer.token()
+        # print(tok.type, tok.value, tok.lexpos)
+        self.assertEqual(tok.type, "FIELD")
+        self.assertEqual(tok.value, "key<2")
+        self.assertEqual(tok.lexpos, 0)
+        self.assertEqual(tok.lineno, 1)
+
+    def test_1_3(self):
+        lexer.input("key>2")
+        tok = lexer.token()
+        # print(tok.type, tok.value, tok.lexpos)
+        self.assertEqual(tok.type, "FIELD")
+        self.assertEqual(tok.value, "key>2")
+        self.assertEqual(tok.lexpos, 0)
+        self.assertEqual(tok.lineno, 1)
+
     def test_2(self):
         lexer.input("key:value and key1:value1 or key2:value2")
         tok = lexer.token()
