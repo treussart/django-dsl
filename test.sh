@@ -7,7 +7,6 @@ if [[ "$VIRTUAL_ENV" = "" ]]; then
         python3 -m venv venv
         source venv/bin/activate
         pip install -r requirements.txt
-        pip install -r test-requirements.txt
     else
         source venv/bin/activate
     fi
