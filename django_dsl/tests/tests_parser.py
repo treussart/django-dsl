@@ -19,7 +19,8 @@ class TestParser(TestCase):
 
     def test_4(self):
         result = compile("(key:value and key1:value1) or not key2:value2 ")
-        self.assertEqual(str(result), "(OR: (AND: ('key', 'value'), ('key1', 'value1')), (NOT (AND: ('key2', 'value2'))))")
+        self.assertEqual(str(result),
+                         "(OR: (AND: ('key', 'value'), ('key1', 'value1')), (NOT (AND: ('key2', 'value2'))))")
 
     def test_5(self):
         result = compile("classification_text:~^value.*fin$ and key1:value1")
