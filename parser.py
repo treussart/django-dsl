@@ -1,7 +1,7 @@
 import ply.yacc as yacc
 from django.db.models import Q
-from dsl.exceptions import CompileException
-from dsl.lexer import tokens
+from .exceptions import CompileException
+from .lexer import tokens
 
 
 assert tokens
