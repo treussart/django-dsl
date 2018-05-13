@@ -52,22 +52,34 @@ def p_expression_field(p):
         key, value = field.split('>=')
         key = key.strip().replace('.', '__')
         value = test_value(value.strip())
-        p[0] = Q(**{key + '__gte': value})
+        if isinstance(value, date):
+            p[0] = Q(**{key + '__date__gte': value})
+        else:
+            p[0] = Q(**{key + '__gte': value})
     elif '<=' in field:
         key, value = field.split('<=')
         key = key.strip().replace('.', '__')
         value = test_value(value.strip())
-        p[0] = Q(**{key + '__lte': value})
+        if isinstance(value, date):
+            p[0] = Q(**{key + '__date__lte': value})
+        else:
+            p[0] = Q(**{key + '__lte': value})
     elif '>' in field:
         key, value = field.split('>')
         key = key.strip().replace('.', '__')
         value = test_value(value.strip())
-        p[0] = Q(**{key + '__gt': value})
+        if isinstance(value, date):
+            p[0] = Q(**{key + '__date__gt': value})
+        else:
+            p[0] = Q(**{key + '__gt': value})
     elif '<' in field:
         key, value = field.split('<')
         key = key.strip().replace('.', '__')
         value = test_value(value.strip())
-        p[0] = Q(**{key + '__lt': value})
+        if isinstance(value, date):
+            p[0] = Q(**{key + '__date__lt': value})
+        else:
+            p[0] = Q(**{key + '__lt': value})
 
 
 def test_value(value):
