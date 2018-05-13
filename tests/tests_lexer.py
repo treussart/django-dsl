@@ -1,4 +1,4 @@
-from django.test import TestCase
+from unittest import TestCase, main
 from lexer import build_lexer
 from exceptions import CompileException
 
@@ -172,3 +172,7 @@ class TestLexer(TestCase):
 
         with self.assertRaises(CompileException):
             lexer.token()
+
+
+if __name__ == '__main__':
+    main()

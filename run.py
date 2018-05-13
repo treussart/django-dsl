@@ -1,5 +1,5 @@
-from .lexer import build_lexer
-from .parser import build_parser
+from lexer import build_lexer
+from parser import build_parser
 
 
 def compile(expr):

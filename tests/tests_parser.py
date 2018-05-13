@@ -1,4 +1,4 @@
-from django.test import TestCase
+from unittest import TestCase, main
 from run import compile
 from exceptions import CompileException
 
@@ -52,3 +52,7 @@ class TestParser(TestCase):
     def test_fail_4(self):
         with self.assertRaises(CompileException):
             compile("key1:value1 or")
+
+
+if __name__ == '__main__':
+    main()

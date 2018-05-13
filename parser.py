@@ -1,7 +1,7 @@
 import ply.yacc as yacc
 from django.db.models import Q
-from .exceptions import CompileException
-from .lexer import tokens
+from exceptions import CompileException
+from lexer import tokens
 
 
 assert tokens
@@ -31,16 +31,18 @@ def p_expression_field(p):
     'expression : FIELD'
     field = str(p[1])
     key, value = field.split(':')
+    key = key.strip().replace('.', '__')
+    value = value.strip()
     if value.startswith('~'):
-        p[0] = Q(**{key.strip().replace('.', '__') + '__iregex': value.strip()[1:]})
+        p[0] = Q(**{key + '__iregex': value[1:]})
     elif value.startswith('*') and not value.endswith('*'):
-        p[0] = Q(**{key.strip().replace('.', '__') + '__iendswith': value.strip().replace("*", "")})
+        p[0] = Q(**{key + '__iendswith': value[1:]})
     elif value.endswith('*') and not value.startswith('*'):
-        p[0] = Q(**{key.strip().replace('.', '__') + '__istartswith': value.strip().replace("*", "")})
+        p[0] = Q(**{key + '__istartswith': value[:-1]})
     elif value.endswith('*') and value.startswith('*'):
-        p[0] = Q(**{key.strip().replace('.', '__') + '__icontains': value.strip().replace("*", "")})
+        p[0] = Q(**{key + '__icontains': value[1:-1]})
     else:
-        p[0] = Q(**{key.strip().replace('.', '__'): value.strip()})
+        p[0] = Q(**{key: value})
 
 
 def p_error(p):
