@@ -1,0 +1,14 @@
+notifications:
+  email:
+    recipients:
+    - matthieu@treussart.com
+    on_success: change
+    on_failure: always
+language: python
+python:
+- '3.5'
+- '3.6'
+os:
+- linux
+script:
+- "./test.sh"
