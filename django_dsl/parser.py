@@ -34,7 +34,16 @@ def p_expression_paren(p):
 def p_expression_field(p):
     'expression : FIELD'
     field = str(p[1])
-    if ':' in field:
+    if ':True' in field or ':False' in field:
+        key, value = field.split(':')
+        key = key.strip().replace('.', '__')
+        value = value.strip()
+        if value == 'False':
+            value = False
+        else:
+            value = True
+        p[0] = Q(**{key + '__isnull': value})
+    elif ':' in field:
         key, value = field.split(':')
         key = key.strip().replace('.', '__')
         value = value.strip()
@@ -47,7 +56,18 @@ def p_expression_field(p):
         elif value.endswith('*') and value.startswith('*'):
             p[0] = Q(**{key + '__icontains': value[1:-1]})
         else:
-            p[0] = Q(**{key + '__iexact': value})
+            if match(r'(?P<startyear>\d{4})-(?P<startmonth>\d{1,2})-(?P<startday>\d{1,2})_(?P<endyear>\d{4})-'
+                     r'(?P<endmonth>\d{1,2})-(?P<endday>\d{1,2})', value):
+                t = match(r'(?P<startyear>\d{4})-(?P<startmonth>\d{1,2})-(?P<startday>\d{1,2})_'
+                          r'(?P<endyear>\d{4})-(?P<endmonth>\d{1,2})-(?P<endday>\d{1,2})', value)
+                p[0] = Q(**{key + '__range': (date(int(t.group('startyear')),
+                                                   int(t.group('startmonth')),
+                                                   int(t.group('startday'))),
+                                              date(int(t.group('endyear')),
+                                                   int(t.group('endmonth')),
+                                                   int(t.group('endday'))))})
+            else:
+                p[0] = Q(**{key + '__iexact': value})
     elif '>=' in field:
         key, value = field.split('>=')
         key = key.strip().replace('.', '__')

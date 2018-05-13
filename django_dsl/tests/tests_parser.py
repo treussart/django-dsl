@@ -77,6 +77,18 @@ class TestParser(TestCase):
         self.assertEqual(str(result), "(AND: ('key__date__gte', datetime.date(2018, 5, 4)), "
                                       "('key1__iexact', 'value1'))")
 
+    def test_13(self):
+        result = compile("key:True")
+        self.assertEqual(str(result), "(AND: ('key__isnull', True))")
+
+    def test_14(self):
+        result = compile("key:False")
+        self.assertEqual(str(result), "(AND: ('key__isnull', False))")
+
+    def test_15(self):
+        result = compile("key:2018-05-04_2018-05-05")
+        self.assertEqual(str(result), "(AND: ('key__range', (datetime.date(2018, 5, 4), datetime.date(2018, 5, 5))))")
+
     def test_fail_1(self):
         with self.assertRaises(CompileException):
             compile("(key:value and key1:value1)) or not key2:value2 ")
