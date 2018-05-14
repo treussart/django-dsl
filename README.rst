@@ -77,7 +77,8 @@ In your code:
 ::
 
    from django_dsl.run import compile
-   result = compile(request.GET['expression'])
+   query = compile(request.GET['expression'])
+   cls.objects.filter(query)
 
 .. _Regex: https://docs.python.org/3/library/re.html
 
