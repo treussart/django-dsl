@@ -97,6 +97,10 @@ class TestParser(TestCase):
         result = compile("key::1:2:3")
         self.assertEqual(str(result), "(AND: ('key__iexact', ':1:2:3'))")
 
+    def test_18(self):
+        result = compile("key:True2")
+        self.assertEqual(str(result), "(AND: ('key__iexact', 'True2'))")
+
     def test_fail_1(self):
         with self.assertRaises(CompileException):
             compile("(key:value and key1:value1)) or not key2:value2 ")
@@ -120,6 +124,20 @@ class TestParser(TestCase):
     def test_fail_6(self):
         with self.assertRaises(CompileException):
             compile("key1:valu(e1")
+
+    def test_fail_7(self):
+        with self.assertRaises(CompileException):
+            compile("key1:True:True")
+
+    def test_fail_8(self):
+        with self.assertRaises(CompileException):
+            result = compile("key1<valu:e1")
+            print(result)
+
+    def test_fail_9(self):
+        with self.assertRaises(CompileException):
+            result = compile("key1<valu<=e1")
+            print(result)
 
 
 if __name__ == '__main__':

@@ -3,7 +3,7 @@ from datetime import date
 from django.db.models import Q
 from exceptions import CompileException
 from lexer import tokens
-from re import match
+from re import match, search
 
 
 assert tokens
@@ -34,16 +34,18 @@ def p_expression_paren(p):
 def p_expression_field(p):
     'expression : FIELD'
     field = str(p[1])
-    if ':True' in field or ':False' in field:
+    if search(r':True$', field) or search(r':False$', field):
         key, value = field.split(':', 1)
         key = key.strip().replace('.', '__')
         value = value.strip()
         if value == 'False':
             value = False
-        else:
+        elif value == 'True':
             value = True
+        else:
+            raise CompileException("Parsing error: True or False")
         p[0] = Q(**{key + '__isnull': value})
-    elif ':' in field:
+    elif ':' in field and not search(r'[><=].*:', field):
         key, value = field.split(':', 1)
         key = key.strip().replace('.', '__')
         value = value.strip()
