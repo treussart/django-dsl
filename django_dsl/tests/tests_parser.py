@@ -93,7 +93,7 @@ class TestParser(TestCase):
         result = compile("key:2~*.^$?{}[]|!+-éèàû")
         self.assertEqual(str(result), "(AND: ('key__iexact', '2~*.^$?{}[]|!+-éèàû'))")
 
-    def test_17self):
+    def test_17(self):
         result = compile("key::1:2:3")
         self.assertEqual(str(result), "(AND: ('key__iexact', ':1:2:3")
 
