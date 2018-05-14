@@ -35,7 +35,7 @@ def p_expression_field(p):
     'expression : FIELD'
     field = str(p[1])
     if ':True' in field or ':False' in field:
-        key, value = field.split(':')
+        key, value = field.split(':', 1)
         key = key.strip().replace('.', '__')
         value = value.strip()
         if value == 'False':
@@ -44,7 +44,7 @@ def p_expression_field(p):
             value = True
         p[0] = Q(**{key + '__isnull': value})
     elif ':' in field:
-        key, value = field.split(':')
+        key, value = field.split(':', 1)
         key = key.strip().replace('.', '__')
         value = value.strip()
         if value.startswith('~'):
@@ -69,7 +69,7 @@ def p_expression_field(p):
             else:
                 p[0] = Q(**{key + '__iexact': value})
     elif '>=' in field:
-        key, value = field.split('>=')
+        key, value = field.split('>=', 1)
         key = key.strip().replace('.', '__')
         value = test_value(value.strip())
         if isinstance(value, date):
@@ -77,7 +77,7 @@ def p_expression_field(p):
         else:
             p[0] = Q(**{key + '__gte': value})
     elif '<=' in field:
-        key, value = field.split('<=')
+        key, value = field.split('<=', 1)
         key = key.strip().replace('.', '__')
         value = test_value(value.strip())
         if isinstance(value, date):
@@ -85,7 +85,7 @@ def p_expression_field(p):
         else:
             p[0] = Q(**{key + '__lte': value})
     elif '>' in field:
-        key, value = field.split('>')
+        key, value = field.split('>', 1)
         key = key.strip().replace('.', '__')
         value = test_value(value.strip())
         if isinstance(value, date):
@@ -93,7 +93,7 @@ def p_expression_field(p):
         else:
             p[0] = Q(**{key + '__gt': value})
     elif '<' in field:
-        key, value = field.split('<')
+        key, value = field.split('<', 1)
         key = key.strip().replace('.', '__')
         value = test_value(value.strip())
         if isinstance(value, date):
