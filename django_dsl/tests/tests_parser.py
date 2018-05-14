@@ -89,6 +89,10 @@ class TestParser(TestCase):
         result = compile("key:2018-05-04_2018-05-05")
         self.assertEqual(str(result), "(AND: ('key__range', (datetime.date(2018, 5, 4), datetime.date(2018, 5, 5))))")
 
+    def test_16(self):
+        result = compile("key:2~*.^$?{}[]|!+-éèàû")
+        self.assertEqual(str(result), "(AND: ('key__iexact', '2~*.^$?{}[]|!+-éèàû'))")
+
     def test_fail_1(self):
         with self.assertRaises(CompileException):
             compile("(key:value and key1:value1)) or not key2:value2 ")
@@ -108,6 +112,10 @@ class TestParser(TestCase):
     def test_fail_5(self):
         with self.assertRaises(CompileException):
             compile("key<test and key1:value1")
+
+    def test_fail_6(self):
+        with self.assertRaises(CompileException):
+            compile("key1:valu(e1")
 
 
 if __name__ == '__main__':

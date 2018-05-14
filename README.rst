@@ -31,7 +31,7 @@ database.
 Characters allowed:
 
 * Key (column name) : `A-Za-z0-9_.`
-* Value : A-Za-z0-9_~*.^$?{}[]|!\/+-éèàû
+* Value : all except ')' '(' and white space. 
 
 Query Parser Syntax:
 
