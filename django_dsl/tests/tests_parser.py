@@ -95,7 +95,7 @@ class TestParser(TestCase):
 
     def test_17(self):
         result = compile("key::1:2:3")
-        self.assertEqual(str(result), "(AND: ('key__iexact', ':1:2:3")
+        self.assertEqual(str(result), "(AND: ('key__iexact', ':1:2:3'))")
 
     def test_fail_1(self):
         with self.assertRaises(CompileException):
