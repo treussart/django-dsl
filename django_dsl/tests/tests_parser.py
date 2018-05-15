@@ -149,6 +149,10 @@ class TestParser(TestCase):
         result = compile("key:*")
         self.assertEqual(str(result), "(AND: ('key__icontains', ''))")
 
+    def test_29(self):
+        result = compile("key:\~test*")
+        self.assertEqual(str(result), "(AND: ('key__istartswith', '~test'))")
+
     def test_fail_1(self):
         with self.assertRaises(CompileException):
             compile("(key:value and key1:value1)) or not key2:value2 ")
