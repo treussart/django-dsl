@@ -101,6 +101,54 @@ class TestParser(TestCase):
         result = compile("key:True2")
         self.assertEqual(str(result), "(AND: ('key__iexact', 'True2'))")
 
+    def test_19(self):
+        result = compile("key:\*test")
+        self.assertEqual(str(result), "(AND: ('key__iexact', '*test'))")
+
+    def test_20(self):
+        result = compile("key:test\*")
+        self.assertEqual(str(result), "(AND: ('key__iexact', 'test*'))")
+
+    def test_21(self):
+        result = compile("key:\*test\*")
+        self.assertEqual(str(result), "(AND: ('key__iexact', '*test*'))")
+
+    def test_21_1(self):
+        result = compile("key:\*test*")
+        self.assertEqual(str(result), "(AND: ('key__istartswith', '*test'))")
+
+    def test_21_2(self):
+        result = compile("key:*test\*")
+        self.assertEqual(str(result), "(AND: ('key__iendswith', 'test*'))")
+
+    def test_22(self):
+        result = compile("key:\~test")
+        self.assertEqual(str(result), "(AND: ('key__iexact', '~test'))")
+
+    def test_23(self):
+        result = compile("key:\~*test\*")
+        self.assertEqual(str(result), "(AND: ('key__iexact', '~*test*'))")
+
+    def test_24(self):
+        result = compile("key:\\*test\\*")
+        self.assertEqual(str(result), "(AND: ('key__iexact', '*test*'))")
+
+    def test_25(self):
+        result = compile("key:*te\*st\*")
+        self.assertEqual(str(result), "(AND: ('key__iendswith', 'te\\\*st*'))")
+
+    def test_26(self):
+        result = compile("key:\*")
+        self.assertEqual(str(result), "(AND: ('key__iexact', '*'))")
+
+    def test_27(self):
+        result = compile("key:\*\*")
+        self.assertEqual(str(result), "(AND: ('key__iexact', '**'))")
+
+    def test_28(self):
+        result = compile("key:*")
+        self.assertEqual(str(result), "(AND: ('key__icontains', ''))")
+
     def test_fail_1(self):
         with self.assertRaises(CompileException):
             compile("(key:value and key1:value1)) or not key2:value2 ")

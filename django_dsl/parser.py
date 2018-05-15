@@ -51,12 +51,18 @@ def p_expression_field(p):
         value = value.strip()
         if value.startswith('~'):
             p[0] = Q(**{key + '__iregex': value[1:]})
+        elif value.startswith('*') and value.endswith('*') and not value.endswith('\*'):
+            p[0] = Q(**{key + '__icontains': value[1:len(value) - 1]})
+        elif value.startswith('*') and value.endswith('\*'):
+            p[0] = Q(**{key + '__iendswith': value[1:len(value) - 2] + '*'})
         elif value.startswith('*') and not value.endswith('*'):
             p[0] = Q(**{key + '__iendswith': value[1:]})
-        elif value.endswith('*') and not value.startswith('*'):
-            p[0] = Q(**{key + '__istartswith': value[:-1]})
-        elif value.endswith('*') and value.startswith('*'):
-            p[0] = Q(**{key + '__icontains': value[1:-1]})
+        elif value.startswith('\*') and value.endswith('*') and not value.endswith('\*'):
+            p[0] = Q(**{key + '__istartswith': '*' + value[2:-1]})
+        elif value.startswith('\~') and value.endswith('*') and not value.endswith('\*'):
+            p[0] = Q(**{key + '__istartswith': value[1:-1]})
+        elif not value.startswith('*') and value.endswith('*') and not value.endswith('\*'):
+            p[0] = Q(**{key + '__istartswith': value[0:len(value) - 1]})
         else:
             if match(r'(?P<startyear>\d{4})-(?P<startmonth>\d{1,2})-(?P<startday>\d{1,2})_(?P<endyear>\d{4})-'
                      r'(?P<endmonth>\d{1,2})-(?P<endday>\d{1,2})', value):
@@ -69,6 +75,12 @@ def p_expression_field(p):
                                                    int(t.group('endmonth')),
                                                    int(t.group('endday'))))})
             else:
+                if value.startswith('\*'):
+                    value = value.replace('\*', '*', 1)
+                if value.endswith('\*'):
+                    value = value[0:len(value) - 2] + '*'
+                if value.startswith('\~'):
+                    value = value[1:]
                 p[0] = Q(**{key + '__iexact': value})
     elif '>=' in field:
         key, value = field.split('>=', 1)
