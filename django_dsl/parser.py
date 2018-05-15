@@ -83,37 +83,23 @@ def p_expression_field(p):
                     value = value[1:]
                 p[0] = Q(**{key + '__iexact': value})
     elif '>=' in field:
-        key, value = field.split('>=', 1)
-        key = key.strip().replace('.', '__')
-        value = test_value(value.strip())
-        if isinstance(value, date):
-            p[0] = Q(**{key + '__date__gte': value})
-        else:
-            p[0] = Q(**{key + '__gte': value})
+        p[0] = extract(field, '>=', 'gte')
     elif '<=' in field:
-        key, value = field.split('<=', 1)
-        key = key.strip().replace('.', '__')
-        value = test_value(value.strip())
-        if isinstance(value, date):
-            p[0] = Q(**{key + '__date__lte': value})
-        else:
-            p[0] = Q(**{key + '__lte': value})
+        p[0] = extract(field, '<=', 'lte')
     elif '>' in field:
-        key, value = field.split('>', 1)
-        key = key.strip().replace('.', '__')
-        value = test_value(value.strip())
-        if isinstance(value, date):
-            p[0] = Q(**{key + '__date__gt': value})
-        else:
-            p[0] = Q(**{key + '__gt': value})
+        p[0] = extract(field, '>', 'gt')
     elif '<' in field:
-        key, value = field.split('<', 1)
-        key = key.strip().replace('.', '__')
-        value = test_value(value.strip())
-        if isinstance(value, date):
-            p[0] = Q(**{key + '__date__lt': value})
-        else:
-            p[0] = Q(**{key + '__lt': value})
+        p[0] = extract(field, '<', 'lt')
+
+
+def extract(field, pattern, pattern2):
+    key, value = field.split(pattern, 1)
+    key = key.strip().replace('.', '__')
+    value = test_value(value.strip())
+    if isinstance(value, date):
+        return Q(**{key + '__date__' + pattern2: value})
+    else:
+        return Q(**{key + '__' + pattern2: value})
 
 
 def test_value(value):
