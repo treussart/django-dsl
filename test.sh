@@ -37,6 +37,7 @@ result_report="$?"
 coverage html --skip-covered
 # Upload coverage to Codacy
 if [[ "$TRAVIS" = true && "$CODACY_PROJECT_TOKEN" != "" && "$TRAVIS_JOB_NUM_MIN" = "1" ]]; then
+    echo "Send coverage"
     coverage xml
     python-codacy-coverage -r coverage.xml
 fi
