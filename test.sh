@@ -39,9 +39,15 @@ if [ "$result_report" -ne 0 ]; then
     echo "Tests failed : Coverage under $FAIL_UNDER %"
     exit "$result_report"
 fi
+# Upload coverage to Codacy
+if [[ "$TRAVIS" = true && "$CODACY_PROJECT_TOKEN" != "" && "$TRAVIS_JOB_NUM_MIN" = "1" ]]; then
+    coverage xml
+    python-codacy-coverage -r coverage.xml
+fi
 # Upload to pypi
 if [[ "$TRAVIS" = true ]]; then
     python setup.py bdist_wheel
     twine upload -u "$PYPI_USERNAME" -p "$PYPI_PASSWORD" dist/*
 fi
+
 exit 0
