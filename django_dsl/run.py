@@ -2,7 +2,7 @@ from lexer import build_lexer
 from parser import build_parser
 
 
-def compile(expr):
+def compile_expr(expr):
     # create separate lexer and parser for each compilation
     # to be thread-safe
     lexer = build_lexer()

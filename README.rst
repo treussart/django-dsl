@@ -88,8 +88,8 @@ In your code:
 
 ::
 
-   from django_dsl.run import compile
-   query = compile(request.GET['expression'])
+   from django_dsl.run import compile_expr
+   query = compile_expr(request.GET['expression'])
    cls.objects.filter(query)
 
 .. _Regex: https://docs.python.org/3/library/re.html
