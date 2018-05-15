@@ -37,12 +37,16 @@ Query Parser Syntax:
 
 * Wildcard Searches: *
 
-  * *\test : All that ends by test
+  * *test : All that ends by test
   * test\* : All that starts by test
-  * *\test\* : All that contains test
+  * *test\* : All that contains test
+  * \\*test\\* : All equal to \*test\*
+  * \\*test* : All that starts by *test
+  * \*test\\\* : All that ends by test*
 * `Regex`_ Searches: ~
 
   * ~\W+ : Matches any character which is not a word character.
+  * \\~test : Matches all equal to \~test.
 * Boolean Operators: AND OR NOT
 * Grouping: ( )
 * Date and number Searches (operators: < > <= >=) :
