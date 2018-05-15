@@ -59,8 +59,10 @@ Query Parser Syntax:
 * Grouping: ( )
 * Date and number Searches (operators: < > <= >=) :
 
-  * key>2
-  * key<=2
+  * key>2 : All greater than 2
+  * key<=2 : All less than or equal to 2
+  * key>2018-05-04 : All greater than 2018-05-04
+  * key<=2018-05-04 : All less than or equal to 2018-05-04
 * Date Range Searches (inclusive) (which correspond to SQL queries of BETWEEN):
 
   * key:2018-05-04_2018-05-05
