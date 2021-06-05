@@ -1,0 +1,25 @@
+[[source]]
+url = 'https://pypi.python.org/simple'
+verify_ssl = true
+name = 'pypi'
+
+[dev-packages]
+coverage = "*"
+flake8 = "*"
+flake8-junit-report = "*"
+pre-commit = "*"
+codacy-coverage = "*"
+black = "*"
+
+[packages]
+django = "*"
+ply = "*"
+
+[requires]
+python_version = "3.9"
+
+[pipenv]
+allow_prereleases = true
+
+[scripts]
+test = "./test.sh"

@@ -5,10 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/django_dsl" isTestSource="false" />
     </content>
-    <orderEntry type="jdk" jdkName="Python 3.6 (django-dsl)" jdkType="Python SDK" />
+    <orderEntry type="jdk" jdkName="Pipenv (django-dsl)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-  </component>
-  <component name="TestRunnerService">
-    <option name="PROJECT_TEST_RUNNER" value="Unittests" />
   </component>
 </module>

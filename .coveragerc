@@ -1,5 +1,6 @@
 [report]
 omit =  */tests/*
+		*/site-packages/*
         venv/*
         dist/*
         setup.py
