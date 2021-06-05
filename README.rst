@@ -39,7 +39,7 @@ database.
 Characters allowed:
 
 * Key (column name) : `A-Za-z0-9_.`
-* Value : all except ')' '(' and white space. 
+* Value : all except ')' '(' and white space.
 
 Query Parser Syntax:
 
@@ -96,8 +96,8 @@ In your code:
 
 .. _Regex: https://docs.python.org/3/library/re.html
 
-.. |Build_Status| image:: https://travis-ci.org/treussart/django-dsl.svg?branch=master
-   :target: https://travis-ci.org/treussart/django-dsl
+.. |Build_Status| image:: https://travis-ci.com/treussart/django-dsl.svg?branch=master
+   :target: https://travis-ci.com/treussart/django-dsl
 
 .. |Version| image:: https://img.shields.io/github/tag/treussart/django-dsl.svg
 .. |Licence| image:: https://img.shields.io/github/license/treussart/django-dsl.svg

@@ -4,24 +4,24 @@ from exceptions import CompileException
 
 # List of token names.   This is always required
 tokens = (
-    'LPAREN',
-    'RPAREN',
-    'FIELD',
-    'AND',
-    'OR',
-    'NOT',
+    "LPAREN",
+    "RPAREN",
+    "FIELD",
+    "AND",
+    "OR",
+    "NOT",
 )
 
 # Regular expression rules for simple tokens
-t_LPAREN = r'\('
-t_RPAREN = r'\)'
-t_FIELD = r'[A-Za-z0-9\_\.]+(:|<|>|<=|>=)[^\)\( \t\n\r\f\v]+'
-t_AND = r'and'
-t_OR = r'or'
-t_NOT = r'not'
+t_LPAREN = r"\("
+t_RPAREN = r"\)"
+t_FIELD = r"[A-Za-z0-9\_\.]+(:|<|>|<=|>=)[^\)\( \t\n\r\f\v]+"
+t_AND = r"and"
+t_OR = r"or"
+t_NOT = r"not"
 
 # A string containing ignored characters (spaces and tabs)
-t_ignore = ' \t'
+t_ignore = " \t"
 
 
 # Error handling rule
