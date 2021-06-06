@@ -21,13 +21,14 @@ def get_version():
 
 
 # Get the long description from the README file
-with open(path.join(here, "README.rst"), encoding="utf-8") as f:
+with open(path.join(here, "README.md"), encoding="utf-8") as f:
     long_description = f.read()
 
 setup(
     name="django-domain-specific-language",
     version=get_version(),
     description="DSL for Django",
+    long_description_content_type="text/markdown",
     long_description=long_description,
     url="https://github.com/treussart/django-dsl",
     author="Treussart Matthieu",
