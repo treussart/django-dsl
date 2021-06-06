@@ -3,20 +3,6 @@ django-dsl
 
 |Licence| |Version|
 
-.. image:: https://api.codacy.com/project/badge/Grade/0f62e3ba9031490e8445268e0c146024?branch=master
-   :alt: Codacy Grade
-   :target: https://www.codacy.com/app/treussart/django-dsl?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=treussart/django-dsl&amp;utm_campaign=Badge_Grade
-
-.. image:: https://api.codacy.com/project/badge/Coverage/0f62e3ba9031490e8445268e0c146024?branch=master
-   :alt: Codacy Coverage
-   :target: https://www.codacy.com/app/treussart/django-dsl?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=treussart/django-dsl&amp;utm_campaign=Badge_Coverage
-
-+------------------+--------------------+
-| Status           | Operating system   |
-+==================+====================+
-| |Build_Status|   | Linux x86\_64      |
-+------------------+--------------------+
-
 Requirements
 ------------
 
@@ -95,9 +81,6 @@ In your code:
    cls.objects.filter(query)
 
 .. _Regex: https://docs.python.org/3/library/re.html
-
-.. |Build_Status| image:: https://travis-ci.com/treussart/django-dsl.svg?branch=master
-   :target: https://travis-ci.com/treussart/django-dsl
 
 .. |Version| image:: https://img.shields.io/github/tag/treussart/django-dsl.svg
 .. |Licence| image:: https://img.shields.io/github/license/treussart/django-dsl.svg

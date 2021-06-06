@@ -8,8 +8,8 @@ coverage = "*"
 flake8 = "*"
 flake8-junit-report = "*"
 pre-commit = "*"
-codacy-coverage = "*"
 black = "*"
+build = "*"
 
 [packages]
 django = "*"
