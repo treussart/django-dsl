@@ -1,6 +1,7 @@
 # django-dsl
 
 ![Licence](https://img.shields.io/github/license/treussart/django-dsl.svg) ![Version](https://img.shields.io/github/tag/treussart/django-dsl.svg)
+![python test workflow](https://github.com/treussart/django-dsl/actions/workflows/python-test.yml/badge.svg)
 
 Provides a rich query language, which interprets a string into a Query.
 This is a simple query language for Django ORM that allows you to search via wildcards and regexes by specifying the database column name.
