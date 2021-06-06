@@ -35,26 +35,9 @@ function run_coverage() {
   coverage report --fail-under="$FAIL_UNDER"
   result_report="$?"
   coverage html --skip-covered
-}
-
-function upload_coverage() {
-  # Upload coverage to Codacy
-  if [[ "$TRAVIS" = true ]]; then
-      echo "Send coverage"
-      coverage xml
-      python-codacy-coverage -r coverage.xml
-  fi
   if [ "$result_report" -ne 0 ]; then
       echo "Tests failed : Coverage under $FAIL_UNDER %"
       exit "$result_report"
-  fi
-}
-
-function upload_pypi() {
-  # Upload to pypi
-  if [[ "$TRAVIS" = true ]]; then
-      python setup.py bdist_wheel
-      twine upload -u "$PYPI_USERNAME" -p "$PYPI_PASSWORD" dist/*
   fi
 }
 

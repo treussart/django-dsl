@@ -1,0 +1,25 @@
+name: Test Python Package
+
+on:
+  push:
+    paths:
+      - 'django_dsl/**/*.py'
+  pull_request:
+    paths:
+      - 'django_dsl/**/*.py'
+
+jobs:
+  test:
+    name: Tests
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Install Dependencies
+      uses: VaultVulp/action-pipenv@v2.0.1
+      with:
+        command: install --deploy --dev
+    - name: Run Tests
+      uses: VaultVulp/action-pipenv@v2.0.1
+      with:
+        command: run test

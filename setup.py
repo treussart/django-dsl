@@ -40,11 +40,11 @@ setup(
         #   3 - Alpha
         #   4 - Beta
         #   5 - Production/Stable
-        "Development Status :: 4 - Beta",
+        "Development Status :: 5 - Production/Stable",
         # 'Environment :: Console',
         # Indicate who your project is intended for
         "Intended Audience :: Developers",
-        "Framework :: Django :: 2.0",
+        "Framework :: Django :: 3.0",
         "Topic :: Software Development :: Interpreters",
         # Pick your license as you wish (should match "license" above)
         "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
@@ -95,5 +95,5 @@ setup(
     #         'transilien = Transilien_Domoticz.transilien:transilien',
     #     ],
     # },
-    install_requires=["Django>=2", "ply"],
+    install_requires=["Django>=3", "ply>=3"],
 )
