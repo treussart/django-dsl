@@ -10,6 +10,7 @@ flake8-junit-report = "*"
 pre-commit = "*"
 black = "*"
 build = "*"
+twine = "*"
 
 [packages]
 django = "*"

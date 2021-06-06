@@ -1,23 +1,17 @@
-django-dsl
-==========
+# django-dsl
 
-|Licence| |Version|
+![Licence](https://img.shields.io/github/license/treussart/django-dsl.svg) ![Version](https://img.shields.io/github/tag/treussart/django-dsl.svg)
 
-Requirements
-------------
+## Requirements
 
 -  PLY
 -  Django
 
-Installation
-------------
+## Installation
 
-::
+    pip install django-domain-specific-language
 
-   pip install django-domain-specific-language
-
-Usage
------
+## Usage
 
 Allows you to search by specifying the name of the column of the
 database.
@@ -31,13 +25,13 @@ Query Parser Syntax:
 
 * Wildcard Searches: *
 
-  * \*test : All that ends by test
-  * test\* : All that starts by test
-  * \*test\* : All that contains test
-  * \\*test\\* : All equal to \*test\*
-  * \\*test* : All that starts by *test
-  * \*test\\\* : All that ends by test*
-* `Regex`_ Searches: ~
+  * *test : All that ends by test
+  * test* : All that starts by test
+  * \*test* : All that contains test
+  * `\*test\*` : All equal to \*test\*
+  * `\*test*` : All that starts by *test
+  * `*test\*` : All that ends by test*
+* [Regex](https://docs.python.org/3/library/re.html) Searches: ~
 
   * ~\W+ : Matches any character which is not a word character.
   * \\~test : Matches all equal to \~test.
@@ -57,15 +51,11 @@ Query Parser Syntax:
   * key:True
   * key:False
 
-Example
--------
+## Example
 
 Your database:
 
-.. figure:: https://raw.githubusercontent.com/treussart/django-dsl/master/example-db.png
-   :alt: DB image
-
-   DB image
+![DB image](https://raw.githubusercontent.com/treussart/django-dsl/master/example-db.png)
 
 The possible researches:
 
@@ -74,13 +64,6 @@ The possible researches:
 
 In your code:
 
-::
-
-   from django_dsl.run import compile_expr
-   query = compile_expr(request.GET['expression'])
-   cls.objects.filter(query)
-
-.. _Regex: https://docs.python.org/3/library/re.html
-
-.. |Version| image:: https://img.shields.io/github/tag/treussart/django-dsl.svg
-.. |Licence| image:: https://img.shields.io/github/license/treussart/django-dsl.svg
+    from django_dsl.run import compile_expr
+    query = compile_expr(request.GET['expression'])
+    cls.objects.filter(query)
