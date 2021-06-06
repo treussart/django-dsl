@@ -2,7 +2,10 @@
 
 ![Licence](https://img.shields.io/github/license/treussart/django-dsl.svg) ![Version](https://img.shields.io/github/tag/treussart/django-dsl.svg)
 
-Allows you to search via wildcard and regex by specifying the name of the database column.
+Provides a rich query language, which interprets a string into a Query.
+This is a simple query language for Django ORM that allows you to search via wildcards and regexes by specifying the database column name.
+
+You can give it to your customers so they will be able to filter the database without having to edit code.
 
 ## Usage
 
